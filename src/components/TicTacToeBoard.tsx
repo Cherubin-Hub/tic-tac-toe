@@ -32,7 +32,6 @@ export function TicTacToeBoard() {
   const [showWinner, setShowWinner] = useState<string | null>(null);
   const [showNewGameWarning, setShowNewGameWarning] = useState(false);
   const winner = calculateWinner(squares);
-  const isGameOver = !!winner || squares.every(Boolean);
 
   function handleClick(i: number) {
     if (squares[i] || winner) return;
