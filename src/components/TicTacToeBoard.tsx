@@ -44,7 +44,7 @@ export function TicTacToeBoard() {
   // Show popup when game ends
   useEffect(() => {
     if (winner) {
-      setTimeout(() => setShowWinner(winner === "X" ? "❌ X wins!" : "⭕ O wins!"), 400);
+      setTimeout(() => setShowWinner(winner === "X" ? "❌ wins!" : "⭕ wins!"), 400);
     } else if (squares.every(Boolean)) {
       setTimeout(() => setShowWinner("🤝 It's a draw!"), 400);
     }
