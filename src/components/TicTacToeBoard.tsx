@@ -1,33 +1,31 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const initialBoard = Array(9).fill(null);
-
-function calculateWinner(squares: (string | null)[]) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (
-      squares[a] &&
-      squares[a] === squares[b] &&
-      squares[a] === squares[c]
-    ) {
-      return squares[a];
-    }
-  }
-  return null;
-}
-
 export function TicTacToeBoard() {
+  const initialBoard = Array(9).fill(null);
+  function calculateWinner(squares: (string | null)[]) {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]
+      ) {
+        return squares[a];
+      }
+    }
+    return null;
+  }
   const [squares, setSquares] = useState<(string | null)[]>(initialBoard);
   const [xIsNext, setXIsNext] = useState(true);
   const [score, setScore] = useState({ X: 0, O: 0, Draw: 0 });
@@ -47,9 +45,9 @@ export function TicTacToeBoard() {
   // Show popup when game ends
   useEffect(() => {
     if (winner) {
-      setTimeout(() => setShowWinner(winner === "X" ? "❌ wins!" : "⭕ wins!"), 500);
+      setTimeout(() => setShowWinner(winner === "X" ? "❌ X wins!" : "⭕ O wins!"), 400);
     } else if (squares.every(Boolean)) {
-      setTimeout(() => setShowWinner("🤝 It's a draw!"), 500);
+      setTimeout(() => setShowWinner("🤝 It's a draw!"), 400);
     }
   }, [winner, squares]);
 
